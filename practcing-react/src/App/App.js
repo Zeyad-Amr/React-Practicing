@@ -1,14 +1,47 @@
 import React, { useState } from "react";
 import "./App.css";
-import Card from "../Card/Card";
-import Filter from "../Filter/Filter";
+import Card from "../components/CardList/CardList";
+import Filter from "../components/Filter/Filter";
+import Button from "../components/Button/Button";
 const App = () => {
   const [cardToggle, setCardToggle] = useState(true);
   const [text, setText] = useState("");
   const [state, setState] = useState([
-    { name: "Zeyad", phone: "01478523690", email: "zeyad@gmail.com" },
-    { name: "Ahmed", phone: "01234567890", email: "ahmed@gmail.com" },
-    { name: "Ali", phone: "01235496789", email: "ali@gmail.com" },
+    {
+      id: 1,
+      name: "Zeyad",
+      phone: "01478523690",
+      email: "zeyad@gmail.com",
+      type: "boy",
+    },
+    {
+      id: 2,
+      name: "Ahmed",
+      phone: "01234567890",
+      email: "ahmed@gmail.com",
+      type: "boy",
+    },
+    {
+      id: 3,
+      name: "Samira",
+      phone: "01234557890",
+      email: "samira@gmail.com",
+      type: "girl",
+    },
+    {
+      id: 4,
+      name: "Sameh",
+      phone: "01235496789",
+      email: "ali@gmail.com",
+      type: "boy",
+    },
+    {
+      id: 5,
+      name: "Salwa",
+      phone: "01236657890",
+      email: "salwa@gmail.com",
+      type: "girl",
+    },
   ]);
   const [filter, setFilter] = useState(state);
 
@@ -16,12 +49,8 @@ const App = () => {
     // const newState = state.filter((item, index) => index !== idx);
     // setState(newState);
     console.log(state);
-    const newState = state.filter((item, index) => index !== idx);
+    const newState = state.filter((item) => item.id !== idx);
     setState(newState);
-
-    console.log(newState);
-
-    console.log(e, idx);
     cardsHandler(text, newState);
   };
   const toggle = () => {
@@ -46,10 +75,10 @@ const App = () => {
 
   return (
     <div className="mainContainer">
-      <h1>... Boys ...</h1>
-      <button style={{ marginBottom: "20px" }} onClick={() => toggle()}>
-        Show Cards
-      </button>
+      <h1>... List of data ...</h1>
+      <Button style={{ marginBottom: "10px" }} onClick={() => toggle()}>
+        {cardToggle ? "Show Cards" : "Hide Cards"}{" "}
+      </Button>
 
       <Filter fileration={textHandler} />
       <div style={{ marginBottom: "20px" }}>

@@ -1,18 +1,19 @@
 import React from "react";
 import "./Card.css";
-const Card = ({ namesList, deleteFunc }) => {
-  const card = namesList.map(({ name, phone, email }, idx) => (
-    <div className="cardWrapper" key={idx}>
+const Card = ({ id, name, phone, email, type, deleteFunc }) => {
+  return (
+    <div
+      className="cardWrapper"
+      style={{ backgroundColor: type === "boy" ? "yellowgreen" : "pink" }}
+    >
       <div>Name: {name}</div>
       <div>Phone: {phone}</div>
       <div>Email: {email}</div>
-      <div className="deleteBtn" onClick={(event) => deleteFunc(event, idx)}>
+      <div className="deleteBtn" onClick={(event) => deleteFunc(event, id)}>
         delete
       </div>
     </div>
-  ));
-
-  return <div>{card}</div>;
+  );
 };
 
 export default Card;
