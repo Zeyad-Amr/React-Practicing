@@ -10,20 +10,38 @@ const App = () => {
     { name: "Ahmed", phone: "01234567890", email: "ahmed@gmail.com" },
     { name: "Ali", phone: "01235496789", email: "ali@gmail.com" },
   ]);
+  const [filter, setFilter] = useState(state);
 
   const deleteCard = (e, idx) => {
     // const newState = state.filter((item, index) => index !== idx);
     // setState(newState);
-    setState((prevState) => {
-      return prevState.filter((item, index) => index !== idx);
-    });
+    console.log(state);
+    const newState = state.filter((item, index) => index !== idx);
+    setState(newState);
+
+    console.log(newState);
+
+    console.log(e, idx);
+    cardsHandler(text, newState);
   };
   const toggle = () => {
     setCardToggle(!cardToggle);
   };
   const textHandler = (e) => {
-    console.log(e);
     setText(e);
+    cardsHandler(e, state);
+  };
+
+  const cardsHandler = (e, newState) => {
+    if (e.length > 0) {
+      setFilter((prevState) => {
+        return newState.filter((item) =>
+          item.name.toLowerCase().includes(e.toLowerCase())
+        );
+      });
+    } else {
+      setFilter(newState);
+    }
   };
 
   return (
@@ -38,7 +56,7 @@ const App = () => {
         <p>{text}</p>
       </div>
       <div style={{ display: cardToggle ? "block" : "none" }}>
-        <Card namesList={state} deleteFunc={deleteCard} />
+        <Card namesList={filter} deleteFunc={deleteCard} />
       </div>
     </div>
   );
