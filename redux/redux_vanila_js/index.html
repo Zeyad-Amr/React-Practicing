@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Redux</title>
+</head>
+
+<body>
+    <div>
+        <p>Counter: <span id="count"></span></p>
+        <p>Clicks: <span id="clicks"></span></p>
+        <button id="increment">Increment</button>
+        <button id="decrement">Decrement</button>
+        <button id="reset">Reset</button>
+    </div>
+
+    <script src="https://unpkg.com/redux@4.1.1/dist/redux.min.js"></script>
+    <script>
+
+        // initialize the state
+        const initState = {
+            counter: 0
+            , clicks: 0
+        }
+
+        // Create a reducer
+        const counterReducer = (state = initState, action) => {
+            switch (action.type) {
+                case 'INCREMENT':
+                    return {
+                        ...state,
+                        counter: state.counter + action.payload.factor,
+                        clicks: state.clicks + 1
+                    }
+                case 'DECREMENT':
+                    return {
+                        ...state,
+                        counter: state.counter - action.payload.factor,
+                        clicks: state.clicks + 1
+                    }
+                case 'RESET':
+                    return {
+                        ...state,
+                        counter: 0,
+                        clicks: state.clicks + 1
+                    }
+                default:
+                    return state;
+            }
+        }
+
+        // Create a store
+        const store = Redux.createStore(counterReducer);
+
+
+        // Create a function that updates the counter
+        const counterApp = () => {
+            document.getElementById('count').innerHTML = store.getState().counter;
+            document.getElementById('clicks').innerHTML = store.getState().clicks;
+        }
+
+        // Fire the counterApp function when the store is updated
+        counterApp();
+
+        // Subscribe the counterApp function to the store
+        store.subscribe(counterApp);
+
+        // Dispatch the action
+        document.getElementById('increment').addEventListener('click', () => {
+            const action = {
+                type: 'INCREMENT',
+                payload: { factor: 5 }
+            }
+            store.dispatch(action);
+        });
+        document.getElementById('decrement').addEventListener('click', () => {
+            const action = {
+                type: 'DECREMENT',
+                payload: { factor: 1 }
+            }
+            store.dispatch(action);
+        });
+        document.getElementById('reset').addEventListener('click', () => {
+            const action = {
+                type: 'RESET'
+            }
+            store.dispatch(action);
+        });
+    </script>
+</body>
+
+</html>
