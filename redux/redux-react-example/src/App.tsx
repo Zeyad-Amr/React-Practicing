@@ -5,8 +5,10 @@ import { useSelector, useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
-  const counter = useSelector((state: CounterState) => state.value);
-  const show = useSelector((state: CounterState) => state.show);
+  // const counter = useSelector((state: CounterState) => state.value);
+  // const show = useSelector((state: CounterState) => state.show);
+  // const { value, show } = useSelector((state: CounterState) => state);
+  const globalState = useSelector((state: CounterState) => state);
 
   const increment = () => {
     // dispatch an action to increment the counter
@@ -31,10 +33,10 @@ function App() {
       <header className="App-header">
         <h1> Redux Counter App </h1>
         <h6> Click on the buttons to increment or decrement the counter </h6>
-        {show ? (
+        {globalState.show ? (
           <div>
             {" "}
-            <div className="counter">Counter: {counter} </div>
+            <div className="counter">Counter: {globalState.value} </div>
             <div className="buttons">
               <button className="increment" onClick={increment}>
                 {" "}
