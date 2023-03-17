@@ -35,26 +35,22 @@ function App() {
         <h6> Click on the buttons to increment or decrement the counter </h6>
         {globalState.show ? (
           <div>
-            {" "}
             <div className="counter">Counter: {globalState.value} </div>
             <div className="buttons">
               <button className="increment" onClick={increment}>
-                {" "}
-                Increment +{" "}
+                Increment ++
               </button>{" "}
               <button className="decrement" onClick={decrement}>
-                {" "}
-                Decrement -{" "}
-              </button>{" "}
-            </div>{" "}
+                Decrement --
+              </button>
+            </div>
           </div>
         ) : (
           <div></div>
         )}
         <br />
         <button className="show" onClick={show_hide}>
-          {" "}
-          Show & Hide Counter{" "}
+          {globalState.show ? "Hide" : "Show"} Counter
         </button>
       </header>
     </div>
