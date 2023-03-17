@@ -5,12 +5,13 @@ import {
   increment,
   decrement,
   toogleShowHide,
-} from "./store/index";
+} from "./store/counterSlice";
 import { useSelector, useDispatch } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
-  const globalState = useSelector((state: CounterState) => state);
+
+  const globalState: CounterState = useSelector((state: any) => state.counter);
 
   return (
     <div className="App">
