@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 // Define a type for the slice state
 export interface CounterState {
   value: number;
-  show: boolean;
 }
 
 // Define the initial state using that type
@@ -13,7 +12,7 @@ export interface CounterAction {
 }
 
 // Define the initial state using that type
-const initialState: CounterState = { value: 0, show: true };
+const initialState: CounterState = { value: 0 };
 
 // Define the slice
 const counterSlice = createSlice({
@@ -28,9 +27,6 @@ const counterSlice = createSlice({
         state.value -= action.payload;
       }
     },
-    toogleShowHide: (state: CounterState) => {
-      state.show = !state.show;
-    },
   },
 });
 
@@ -38,4 +34,4 @@ const counterSlice = createSlice({
 export const counterReducer = counterSlice.reducer;
 
 // Export the action creators
-export const { increment, decrement, toogleShowHide } = counterSlice.actions;
+export const { increment, decrement } = counterSlice.actions;
