@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import { toogleShowHide } from "./authSlice";
 // Define a type for the slice state
 export interface CounterState {
   value: number;
@@ -27,6 +27,11 @@ const counterSlice = createSlice({
         state.value -= action.payload;
       }
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(toogleShowHide, (state: CounterState) => {
+      state.value = 0;
+    });
   },
 });
 
