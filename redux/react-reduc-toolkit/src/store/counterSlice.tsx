@@ -31,7 +31,7 @@ const counterSlice = createSlice({
 });
 
 // Export the reducer and action creators
-export const counterReducer = counterSlice.reducer;
+export default counterSlice.reducer;
 
 // Export the action creators
 export const { increment, decrement } = counterSlice.actions;

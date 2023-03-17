@@ -26,7 +26,7 @@ const authSlice = createSlice({
 });
 
 // Export the reducer and action creators
-export const authReducer = authSlice.reducer;
+export default authSlice.reducer;
 
 // Export the action creators
 export const { toogleShowHide } = authSlice.actions;
